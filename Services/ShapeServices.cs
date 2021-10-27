@@ -12,25 +12,22 @@ namespace ChromeShape.Services
     {
         public GetShapeDetailsResponse GetShapeDetail(GetShapeDetailsParam param)
         {
-            GetShapeDetailsResponse details = null;
+            Shape s = null;
             switch (param.ShapeType)
             {
                 case ShapeType.Circle:
-                    var c = new Circle() { Radius = param.Radius };
-                    details = new GetShapeDetailsResponse() { Area = c.Area(), Perimeter = c.Perimeter() };
+                    s = new Circle() { Radius = param.Radius };
                     break;
                 case ShapeType.Square:
-                    var s = new Square() { Side = param.Side };
-                    details = new GetShapeDetailsResponse() { Area = s.Area(), Perimeter = s.Perimeter() };
+                    s = new Square() { Side = param.Side };
                     break;
                 case ShapeType.Rectangle:
-                    var r = new Rectangle() { Width = param.Width, Height = param.Height };
-                    details = new GetShapeDetailsResponse() { Area = r.Area(), Perimeter = r.Perimeter() };
+                    s = new Rectangle() { Width = param.Width, Height = param.Height };
                     break;
                 default:
                     break;
             }
-            return details;
+            return new GetShapeDetailsResponse() { Area = s.Area(), Perimeter = s.Perimeter() };
         }
     }
 }
